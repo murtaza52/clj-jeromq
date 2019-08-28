@@ -17,8 +17,9 @@
 (defn receive-msg
   [socket]
   (when-let [msg (receive socket)]
+    (println msg)
     (loop [msgs [msg]
-           pred  (more? socket)]
+           pred (more? socket)]
       (if pred
         (recur (conj msgs (receive socket))
                (more? socket))
